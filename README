@@ -19,6 +19,21 @@ Features include:
 Usage
 -----
 
+You must have an element (div, p, span, etc. with class='destination'  where the image will be sent. You can change the name of this class, see case 3. 
+
+<script>
+  $(".flying").flytoCart();
+</script>
+
+<div class='destination'></div>
+
+<div id='products'>
+  <a href='#' class='flying' ><img  src='img/amarillo.jpg'  width='100'  id='product_id_1' /></a>
+  <a href='#' class='flying' ><img  src='img/negro.jpg'     width='100'  id='product_id_2' /></a>
+  <a href='#' class='flying' ><img  src='img/verde.jpg'     width='100'  id='product_id_3'  /></a>
+</div>
+
+
 // CASE 1: create the flyToCart instance 
 $(".flying").flytoCart();
 
