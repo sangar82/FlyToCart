@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Fly It!</title>
+	<script type='text/javascript' src='jquery-1.7.min.js'></script>
+	<script type='text/javascript' src='jquery.flytoCart-1.0.min.js'></script>
+	<style>
+	  .destination{
+	    margin:0px auto;
+	    width:200px;
+	    height:50px;
+	    border:1px solid #444;	
+	  }
+	</style>
+	
+	<script>
+	
+    $(document).ready(function(){    
+    	  
+        // CASE 1: without callback    
+        // $(".flying").flytoCart();
+        
+        // CASE 2: with callback
+        $(".flying").flytoCart( function(){
+        	//do something to add the product to the shopping cart
+          alert(this.id + " add to the shopping cart");
+        } );          
+ 
+        /*
+        // CASE 3: with callback and overwrite default options    
+        $(".flying").flytoCart( function(){
+        	  alert("Finish with "+this.id);
+        	  }, {velocity:10000, destination: '.shoppingcart'} );
+        */
+        
+    });  
+	
+	</script>
+	
+</head>
+<body>
+
+		<div class='destination'></div>
+		
+		<div id='products'>
+			<a href='#' class='flying' ><img  src='img/amarillo.jpg'  width='100'  id='product_id_1' /></a>
+			<a href='#' class='flying' ><img  src='img/negro.jpg'     width='100'  id='product_id_2' /></a>
+			<a href='#' class='flying' ><img  src='img/verde.jpg'     width='100'  id='product_id_3'  /></a>
+		</div>
+
+</body>
+</html>
