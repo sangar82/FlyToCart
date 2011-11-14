@@ -8,7 +8,9 @@ Overview
 
 FlyToCart is a jquery plugin that enables send a image to the shopping cart
 
+
 Features include:
+
 - Send a image at any class or id
 - Callback function
 - Override options (id or class destination and movement velocity)
@@ -17,16 +19,16 @@ Features include:
 Usage
 -----
 
-// create the flyToCart instance 
+// CASE 1: create the flyToCart instance 
 $(".flying").flytoCart();
 
-// Create the instance and callback
+// CASE 2: Create the instance and callback
 $(".flying").flytoCart( function(){
 	//do something to add the product to the shopping cart
   	alert(this.id + " add to the shopping cart");
 } );
 
-// Create the instance, callback and override options (change the velocity and the destination)
+// CASE 3: Create the instance, callback and override options (change the velocity and the destination)
 $(".flying").flytoCart( function(){
 	  alert("Finish with "+this.id);
 	  }, {velocity:10000, destination: '.shoppingcart'} 
