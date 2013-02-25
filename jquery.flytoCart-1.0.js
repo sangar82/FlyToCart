@@ -1,12 +1,12 @@
 /*
- * flytoCart v1.0
+ * flytoCart v1.1
  * http://jquery.com/
  *
  * Copyright 2011, Iván Sánchez (Girona)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license.
  *
- * Date: Mon Nov 14 12:10:21 2011
+ * Date: Sat Feb 23 12:10:21 2011
  */
 
 $.fn.flytoCart = function(callback, options){  	
@@ -16,6 +16,7 @@ $.fn.flytoCart = function(callback, options){
 	
 	// Default settings
 	$.fn.flytoCart.defaults = {  
+	    source: '',
 	    destination 	: 	".destination",
 	    velocity		 	:	1200	
 	};  
@@ -24,12 +25,18 @@ $.fn.flytoCart = function(callback, options){
 	var opts = $.extend({}, $.fn.flytoCart.defaults, options);  
 
 	$(this).click(function() {
+		
+			if (opts.source=='') {
+				src=$(this);
+			} else {
+				src=$(opts.source);
+			}
 			
 			if (!fstop){
 					
 					// Calculate image position
-					var fproductX 				= 		$(this).children().offset().left;
-					var fproductY 				= 		$(this).children().offset().top;
+					var fproductX 				= 		src.children().offset().left;
+					var fproductY 				= 		src.children().offset().top;
 					
 					// Calculate basket // shopping cart  position
 					var fbasketX 					= 		$(opts.destination).offset().left;
@@ -40,14 +47,14 @@ $.fn.flytoCart = function(callback, options){
 					var fgotoY 					= 		fbasketY - fproductY;
 					
 					// Calculate the witdh and height of the new image that we will move
-					var fnewImageWidth 		= 		$(this).children().width() / 3;
-					var fnewImageHeight		= 		$(this).children().height() / 3;
+					var fnewImageWidth 		= 		src.children().width() / 3;
+					var fnewImageHeight		= 		src.children().height() / 3;
 					
-					var fparent 					= 		this;
+					var fparent 					= 		src;
 					fstop 							=		true;
 					
 					//begin the transition
-					$(this).children()
+					src.children()
 					.clone()
 					.prependTo(fparent)
 					.css({'position' : 'absolute'})
