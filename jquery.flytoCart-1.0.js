@@ -1,12 +1,12 @@
 /*
- * flytoCart v1.1
+ * flytoCart v1.2
  * http://jquery.com/
  *
  * Copyright 2011, Iván Sánchez (Girona)
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license.
  *
- * Date: Sat Feb 23 12:10:21 2011
+ * Date: Wed feb 28 12:10:21 2013
  */
 
 $.fn.flytoCart = function(callback, options){  	
@@ -15,8 +15,9 @@ $.fn.flytoCart = function(callback, options){
 	var fstop = false;
 	
 	// Default settings
-	$.fn.flytoCart.defaults = {  
-	    source: '',
+	$.fn.flytoCart.defaults = {
+		source: '',
+		attribute: '',
 	    destination 	: 	".destination",
 	    velocity		 	:	1200	
 	};  
@@ -25,18 +26,24 @@ $.fn.flytoCart = function(callback, options){
 	var opts = $.extend({}, $.fn.flytoCart.defaults, options);  
 
 	$(this).click(function() {
-		
+						   
 			if (opts.source=='') {
-				src=$(this);
+				src=$(this)
 			} else {
-				src=$(opts.source);
+				if (opts.attribute=='') {
+					src=$(opts.source);
+				} else {
+					att=$(this).attr(opts.attribute);
+					src=$("#"+att);
+				}
 			}
 			
 			if (!fstop){
 					
 					// Calculate image position
-					var fproductX 				= 		src.children().offset().left;
-					var fproductY 				= 		src.children().offset().top;
+					
+					var fproductX 				= 		src.offset().left;
+					var fproductY 				= 		src.offset().top;
 					
 					// Calculate basket // shopping cart  position
 					var fbasketX 					= 		$(opts.destination).offset().left;
@@ -47,14 +54,14 @@ $.fn.flytoCart = function(callback, options){
 					var fgotoY 					= 		fbasketY - fproductY;
 					
 					// Calculate the witdh and height of the new image that we will move
-					var fnewImageWidth 		= 		src.children().width() / 3;
-					var fnewImageHeight		= 		src.children().height() / 3;
+					var fnewImageWidth 		= 		src.width() / 3;
+					var fnewImageHeight		= 		src.height() / 3;
 					
 					var fparent 					= 		src;
 					fstop 							=		true;
 					
 					//begin the transition
-					src.children()
+					src
 					.clone()
 					.prependTo(fparent)
 					.css({'position' : 'absolute'})
